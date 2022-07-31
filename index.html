@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Quiz</title>
+    <link rel="stylesheet" href="./Asset/css/style.css">
+</head>
+<body>
+    <a class="view-highscores" id="view-highscores" href="#">View High Scores</a>
+    <div id="timer">Time: <span id="time-left"></span></div>
+    <div class="welcome">
+        <h1 id="welcome-title" data-group="welcome-page" data-status="visible" data-text-visible="Coding Quiz Challenge" data-text-hide=""></h1>
+        <p id="welcome-sentence" data-group="welcome-page" data-status="visible" data-text-visible="This is an introduction" data-text-hide=""></p>
+    </div>
+    <button class="btn" id="start-quiz">Start Quiz</button>
+    <div id="quiz">
+        <div id="question"></div>
+        <div id="choices">
+            <button id="choice"></button>
+            <button id="choice"></button>
+            <button id="choice"></button>
+            <button id="choice"></button>
+        </div>
+    </div>
+    <div id="result">
+        <input placeholder="initials" id="initials" />
+        <button class="btn" id="initial-submit"></button>
+    </div>
+</body>
+
+<script type="javascript" src="./Asset/js/script.js"></script>
+</html>
