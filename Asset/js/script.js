@@ -39,7 +39,7 @@ startbtnEL.addEventListener("click", startGame);
 
 //Initialize the game and set up everything 
 function startGame(){
-    timeLeft = 10;
+    timeLeft = 60;
     qIndex = 0;
     // Hide welcome panel and startquiz btn
     welcomeEl.dataset.state="hidden";
