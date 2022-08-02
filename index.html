@@ -11,6 +11,7 @@
 
     </header>
     <main>
+        <!--Welcome Page-->
         <a class="view-highscores" id="view-highscores" href="#">View High Scores</a>
         <h1 id="timer" class="show"></h1>
         <div id="welcome" class="show" data-state="visible">
@@ -22,18 +23,25 @@
             </p>
         </div>
         <button class="btn show" id="start-quiz">Start Quiz</button>
+
+        <!--quiz section-->
         <div id = "quiz" class = "hidden">
             <div id="question"></div>
-            <div id ="choice">
-            </div>
+            <div id ="choice"></div>
+            <div id ="answer"></div>
         </div>
+
+        <!--Result part-->
         <div id="result" class="hidden">
             <p id = win-or-loss></p>
             <p id = message></p>
             <input placeholder="initials" id="initials" />
             <button class="btn" id="initial-submit">Submit</button>
         </div> 
-        <ul id = "highscore-list" class="hidden"></ul>
+        <!--High Score list-->
+        <ul id = "highscore-list" class="hidden highscore">High Scores</ul>
+        <button id = "go-back" class = "hidden">Go Back</button>
+        <button id = "clear" class = "hidden">Clear</button>
     </main>
     <script src="./Asset/js/script.js"></script>
 </body>
