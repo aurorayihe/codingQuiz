@@ -7,9 +7,11 @@ var choiceEL = document.querySelector("#choice");
 var resultEL = document.querySelector("#result");
 var winLossEL = document.querySelector("#win-or-loss");
 var messageEl = document.querySelector("#message");
+var initialInput = document.querySelector("#initlals");
+var submitEL = document.querySelector("#initial-submit");
+var highScoreEL = document.querySelector("#highscore-list");
 
-
-var timeLeft = 20;
+var timeLeft = 3;
 var qIndex = 0;
 var choice;
 var answer;
@@ -22,8 +24,10 @@ var questions = [
     choices: ["last()", "get()", "pop()", "None of the above."], answer:"pop()"}]
 
 
+// Click the start button and start the game
 startbtnEL.addEventListener("click", startGame);
 
+//Initialize the game and set up everything 
 function startGame(){
     // Hide welcome panel and startquiz btn
     welcomeEl.dataset.state="hidden";
@@ -38,6 +42,7 @@ function startGame(){
 
 }
 
+
 // Set timer, if no time left, hide timer
 function countTime(){
     var timeInterval = setInterval(function(){
@@ -48,29 +53,34 @@ function countTime(){
             return;
         } else {
             timerEL.textContent = "Time: " + timeLeft;
+            timeLeft--;
         }
-        timeLeft--;
     }, 1000) 
 }
 
+// Show the result
 function sendResult(){
     quizEl.setAttribute("class", "hidden");
     timerEL.setAttribute("class", "hidden");
     resultEL.setAttribute("class", "show");
     if (timeLeft <= 0){
+        clearInterval(timeInterval);
         winLossEL.innerHTML = "Time's up";
         messageEl.innerHTML = "Your final score is " + timeLeft;
+        return;
     } else {
         winLossEL.innerHTML = "All done!"
         messageEl.innerHTML = "Your final score is " + timeLeft;
+        return;
     }
 }
 
+// Generate next question when you click an answer
 function generateQuestion(){
     if (qIndex < questions.length){
+        clearContent();
         questionEL.textContent = questions[qIndex].question;
         answer = questions[qIndex].answer;
-        removeElement(choiceEL);
         for (let i = 0; i < 4;i++){
             choice = document.createElement("button");
             choice.textContent = questions[qIndex].choices[i];
@@ -84,11 +94,19 @@ function generateQuestion(){
     }  
 }
 
-function removeElement(element){
-    for(let i = 0; i < element.length; i++){
-        element[i].parentNode.removeChild(element[i]);
+// clear precious question content 
+function clearContent(){
+    var existContent = document.querySelectorAll(".options");
+    console.log(existContent.length);
+    if (existContent.length == 0){
+        return;
+    } else {
+        for (let i = 0; i < existContent.length; i++){
+            existContent[i].parentNode.removeChild(existContent[i]);
+        }
     }
 }
+
 // Click answer and jump to next question
 var optionEL = document.querySelectorAll(".options");
 choiceEL.addEventListener("click", function(event){
@@ -103,3 +121,11 @@ choiceEL.addEventListener("click", function(event){
     }
 })
 
+//Submit initials
+submitEL.addEventListener("click", addInitial);
+function addInitial(){
+    highScoreEL.setAttribute("class", "show");
+    var highscore = document.createElement("li");
+    highscore.textContent = submitEL.innerHTML;
+    highScoreEL.appendChild(highscore);
+}
